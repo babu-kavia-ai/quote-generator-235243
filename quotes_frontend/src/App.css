@@ -1,0 +1,251 @@
+:root {
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #64748b;
+
+  --primary: #3b82f6;
+  --primaryHover: #2563eb;
+  --primaryActive: #1d4ed8;
+
+  --secondary: #64748b;
+  --secondaryHover: #475569;
+  --secondaryActive: #334155;
+
+  --error: #ef4444;
+
+  --ring: 0 0 0 4px rgba(59, 130, 246, 0.25);
+  --shadow: 0 10px 30px rgba(17, 24, 39, 0.10);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.appShell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+.appMain {
+  width: 100%;
+  max-width: 720px;
+  display: grid;
+  gap: 18px;
+}
+
+.appHeader {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+
+.appTitle {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.appGreeting {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.nameRow {
+  margin: 0 auto;
+  display: grid;
+  gap: 6px;
+  width: min(420px, 100%);
+  text-align: left;
+}
+
+.nameRow__label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.nameRow__input {
+  width: 100%;
+  border: 1px solid rgba(100, 116, 139, 0.25);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+}
+
+.nameRow__input:focus {
+  box-shadow: var(--ring);
+  border-color: rgba(59, 130, 246, 0.65);
+}
+
+/* Quote Card */
+.quoteCard {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 22px 18px;
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 560px) {
+  .quoteCard {
+    padding: 26px 28px 22px;
+    gap: 20px;
+  }
+}
+
+.quoteCard__content {
+  display: grid;
+  gap: 12px;
+}
+
+.quoteCard__quote {
+  margin: 0;
+}
+
+.quoteCard__quoteText {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 560px) {
+  .quoteCard__quoteText {
+    font-size: 22px;
+  }
+}
+
+.quoteCard__meta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.quoteCard__author {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Actions */
+.quoteCard__actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 560px) {
+  .quoteCard__actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.03s ease, background 0.15s ease, border-color 0.15s ease,
+    opacity 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  box-shadow: var(--ring);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn--primary:hover {
+  background: var(--primaryHover);
+}
+
+.btn--primary:active {
+  background: var(--primaryActive);
+}
+
+.btn--secondary {
+  background: rgba(100, 116, 139, 0.10);
+  color: var(--text);
+  border-color: rgba(100, 116, 139, 0.25);
+}
+
+.btn--secondary:hover {
+  background: rgba(71, 85, 105, 0.12);
+  border-color: rgba(71, 85, 105, 0.35);
+}
+
+.btn--secondary:active {
+  background: rgba(51, 65, 85, 0.14);
+}
+
+/* Toast */
+.quoteCard__toastRegion {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  width: calc(100% - 28px);
+  max-width: 520px;
+  pointer-events: none;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.quoteToast {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  background: rgba(17, 24, 39, 0.92);
+  color: white;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  box-shadow: 0 10px 20px rgba(17, 24, 39, 0.18);
+}
+
+.quoteToast--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quoteToast--error {
+  background: rgba(239, 68, 68, 0.92);
+}
